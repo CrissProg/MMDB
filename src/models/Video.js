@@ -12,6 +12,6 @@ class Vid extends MultimediaElement{
     static select(){
         let tag = document.createElement("video");
         tag.controls = true;
-        super.select("Video.php",tag,"audio");
+        super.select("Video.php",tag,"video");
     }
 }

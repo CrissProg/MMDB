@@ -71,7 +71,7 @@ El proyecto será desarrollado bajo las tecnologías aprendidas en clase y la en
 #### 1. Cliente
 El cliente dispondrá de las siguientes capacidades:
 
-1. **(20%)** El usuario podrá cargar archivos multimedia de tipo Imagen (png, jpeg, tiff, gif), Audio (mp3, ogg, mp4, wav, m4a), Video (webm, avi, mp4, wmv), Pdf, JS, PHP (Tanto JS como PHP deberán presentarse con colores highlight que los identifiquen como podrán encontrar [acá](https://highlightjs.org/)). Al procesar el archivo, el cliente previsualizará el contenido del archivo en pantalla para que el usuario pueda verlo.
+1. **(20%)** El usuario podrá cargar archivos multimedia de tipo Imagen (png, jpeg, tiff, gif), Audio (mp3, ogg, mp4, wav, m4a), Video (webm, avi, mp4, wmv), Pdf, JS, PHP (Tanto JS como PHP deberán presentarse con colores highlight que los identifiquen como podrán encontrar [acá](https://highlightjs.org/)). Al procesar el archivo, el cliente previsualizará el contenido del archivo en pantalla para que el usuario pueda verlo. mira el drop area y el multimedia element.
 
 2. **(20%)** El usuario podrá alojar dichos elementos en la base de datos para posteriormente realizar consultas con ellos, a continuación a lista de las consultas:
 	1. El usuario podrá consultar todos los elementos de ese tipo alojados en la base de datos.

@@ -1,6 +1,6 @@
 let dropArea = new DropArea("#dropArea");
 let fileCounter = 0;
-const URLServidor = "http://localhost/usbcali/MMDBServer/";
+const URLServidor = "http://localhost/veraneo/MMDBServer/";
 
 function defaultBehavior(el){
     let da = dropArea.DOMElement;
@@ -71,10 +71,46 @@ let videoBehavior = (file) => {
 };
 
 let pdfBehavior = (file) => {
-    var pdf = new Pdf(file);
+    var pdf = new Pdf(file);   
     pdf.loadFileContent().then(()=>{
         defaultBehavior(pdf);
+
+        let saveBtn = document.createElement("button");
+        saveBtn.innerHTML = "Guardar en la DBMM";
+        saveBtn.onclick = () => { pdf.save(); };
+
         dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).prepend(pdf.DOMElement);
+        dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).append(saveBtn);
+    });
+};
+
+let textoBehavior = (file) => {
+    var texto = new Texto(file);
+    texto.loadFileContent().then(()=>{
+        defaultBehavior(texto);
+
+        let saveBtn = document.createElement("button");
+        saveBtn.innerHTML = "Guardar en la DBMM";
+        saveBtn.onclick = () => { texto.save(); };
+
+        
+        dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).prepend(texto.DOMElement);
+        dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).append(saveBtn);
+    }); 
+};
+
+let jsBehavior = (file) => {
+    var js = new Js(file);
+    js.loadFileContent().then(()=>{
+        defaultBehavior(js);
+
+        let saveBtn = document.createElement("button");
+        aveBtn.innerHTML = "Guardar en la DBMM";
+        saveBtn.onclick = () => { js.save(); };
+
+        
+        dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).prepend(texto.DOMElement);
+        dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).append(saveBtn);
     });
 };
 
@@ -82,6 +118,7 @@ dropArea.subscribe("image", imageBehavior);
 dropArea.subscribe("audio", audioBehavior);
 dropArea.subscribe("video", videoBehavior);
 dropArea.subscribe("pdf", pdfBehavior);
+dropArea.subscribe("text", textoBehavior);
 
 /**
     SELECT AREA
@@ -96,6 +133,12 @@ function select(sayWhat) {
             break;
         case "video":
             Vid.select();
+            break;
+        case "pdf":
+            Pdf.select();
+            break;
+        case "text":
+            Texto.select();
             break;
     }
 }

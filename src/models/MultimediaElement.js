@@ -42,22 +42,31 @@ class MultimediaElement{
         var element = null;
 
         if(this.type == "image/png" || this.type == "image/gif"
-        || this.type == "image/jpeg" || this.type == "image/webp"){
-            element = document.createElement("img");
+        || this.type == "image/jpeg" || this.type == "image/webp"
+        || this.type == "image/tiff"){
+            element = document.createElement("img");     
         }
 
         if(this.type == "audio/aac" || this.type == "audio/ogg"
-        || this.type == "audio/mp3" || this.type == "audio/webm"){
+        || this.type == "audio/mp3" || this.type == "audio/webm"
+        || this.type == "audio/wav" || this.type == "audio/mp4"
+        || this.type == "audio/x-m4a"){
             element = document.createElement("audio");
         }
 
         if(this.type == "video/mpeg" || this.type == "video/ogg"
-        || this.type == "video/avi" || this.type == "video/webm"){
+        || this.type == "video/avi" || this.type == "video/webm"
+        || this.type == "video/mp4" || this.type == "video/wmv"){
             element = document.createElement("video");
         }
 
-        if(this.type == "text/plain" || this.type == "text/html"){
-            element = document.createElement("div");
+        if(this.type == "text/plain" || this.type == "text/html"
+        || this.type == "text/javascript" || this.type == "application/x-php"){
+            element = document.createElement("text");
+        }
+        
+        if(this.type == "application/pdf"){
+            element = document.createElement("pdf");
         }
 
         return element;
@@ -141,8 +150,10 @@ class MultimediaElement{
         let url = `${URLServidor}${resource}?exec=select`;
         fetch(url,options)
         .then(function(response) {
+            //console.log("Estamos mal perrito!");
             return response.json();
         })
+        
         .then(function(json) {
             json.forEach(el => {
                 if(document.querySelector(`#selectArea #${elId}${el.id}`) == null){

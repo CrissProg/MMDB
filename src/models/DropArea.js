@@ -9,7 +9,7 @@ class DropArea{
             image: ()=>{ console.log("Image Dropped, this is a default message, please subscribe."); },
             audio: ()=>{ console.log("Audio Dropped, this is a default message, please subscribe."); },
             video: ()=>{ console.log("Video Dropped, this is a default message, please subscribe."); },
-            text: ()=>{ console.log("Text Dropped, this is a default message, please subscribe."); },
+            text: ()=>{ console.log("texto Dropped, this is a default message, please subscribe."); },
             pdf: ()=>{ console.log("PDF Dropped, this is a default message, please subscribe."); }
         };
     }
@@ -34,7 +34,7 @@ class DropArea{
      * @param {function} callback 
      */
     subscribe(fileGroup,callback){
-        //fileGroups => image, audio, video, text
+        //fileGroups => image, audio, video, o
         this.listeners[fileGroup] = callback;
     }
 
@@ -64,24 +64,33 @@ class DropArea{
         let toEmit = "";
 
         if(file.type == "image/png" || file.type == "image/gif"
-        || file.type == "image/jpeg" || file.type == "image/webp"){
+        || file.type == "image/jpeg" || file.type == "image/webp"
+        || file.type == "image/tiff"){
             toEmit = "image";
         }
 
         if(file.type == "audio/aac" || file.type == "audio/ogg"
-        || file.type == "audio/mp3" || file.type == "audio/webm"){
+        || file.type == "audio/mp3" || file.type == "audio/webm"
+        || file.type == "audio/wav" || file.type == "audio/mp4"
+        || file.type == "audio/x-m4a"){
             toEmit = "audio";
         }
 
         if(file.type == "video/mpeg" || file.type == "video/ogg"
-        || file.type == "video/avi" || file.type == "video/webm"){
+        || file.type == "video/avi" || file.type == "video/webm"
+        || file.type == "video/mp4" || file.type == "video/wmv"){
             toEmit = "video";
         }
 
-        if(file.type == "text/plain" || file.type == "text/html"){
+        if(file.type == "text/plain" || file.type == "text/html"
+        || file.type == "text/javascript" || file.type == "application/x-php"){
             toEmit = "text";
         }
-
+        /**
+         * se agrega el campo para que lea file.pdf
+         * 
+         * 
+         */
         if(file.type == "application/pdf"){
             toEmit = "pdf";
         }
