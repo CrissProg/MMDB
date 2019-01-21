@@ -67,9 +67,6 @@ class Imagen extends MultimediaElement{
             histogram.b[d[i+2]] = !(d[i+2] in histogram.b) ? 1 : histogram.b[d[i+2]] + 1;//B
         }
         this.histogram = histogram;
-        JSON.stringify(histogram);
-        super.save(histograma);
-        
     }
 
     drawHistogram(selector){
@@ -137,6 +134,8 @@ class Imagen extends MultimediaElement{
         };
         console.log(this.histogram);
         console.log(datasets);
+        var histogramUp = JSON.stringify(this.histogram);
+        console.log(histogramUp);
         //instancia del diagrama
         new Chart(ctx, {
             type: 'bar',
