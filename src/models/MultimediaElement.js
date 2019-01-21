@@ -1,6 +1,5 @@
 class MultimediaElement{
 
-
     constructor(file, type = null, DOMElement = null){
         this.file = file;
         this.type = type;
@@ -69,9 +68,11 @@ class MultimediaElement{
             element = document.createElement("pdf");
         }
 
+        percent()
+
         return element;
     }
-
+//carga el contenido del archivo, renorda el objeto con esa instancia
     loadFileContent(){
         return new Promise((resolve, reject) => {
             this._readFileAsDataURL((result)=>{
@@ -80,7 +81,7 @@ class MultimediaElement{
             });
           });
     }
-
+//calcular el peso del archivo en MB
     sizeToMB(){
         return Math.round( (this.file.size/(1024*1024)) * 100 ) / 100;
     }
@@ -96,6 +97,7 @@ class MultimediaElement{
     }
 
     save(resource = ""){
+        //organizar los atributos, preparando para que sean parametros
         let data = {
             id: null,
             name: this.file.name,
@@ -103,20 +105,25 @@ class MultimediaElement{
             size: this.sizeToMB(),
             file: this.DOMElement.src
         };
+        //declarar un objeto para indicar los parametros de la consulta
         var params = new FormData();
         for (const key in data) {
             params.append(key,data[key]);
         }
+        //parametros de la peticion
         var options = { 
             method: 'POST',
             mode: 'cors',
             cache: 'default',
             headers: {
+                //cambios de la base de datos que quiero consultar, asterizco
                 'Access-Control-Allow-Origin':'*'
             },
             body: params
         };
+        //llamar al servicio de la base de datos
         let url = `${URLServidor}${resource}?exec=insert`; console.log(url); 
+        //ejecuta el llamado del servicio
         fetch(url,options)
         .then(function(response) {
             //console.log(response.text());
@@ -158,7 +165,7 @@ class MultimediaElement{
                 'Access-Control-Allow-Origin':'*'
             }
         };
-
+        //consultar un registro por su id 
         if(id != null){
             let data = new FormData();
             data.append("id",id);
@@ -172,6 +179,7 @@ class MultimediaElement{
         })
         
         .then(function(json) {
+            //pinta los resultados de la consulta
             json.forEach(el => {
                 if(document.querySelector(`#selectArea #${elId}${el.id}`) == null){
                     document.querySelector("#selectArea").innerHTML +=`
@@ -232,7 +240,7 @@ class MultimediaElement{
             } 
         });
     }
-
+    //drop es llamado para cada ciclo desde el php para borrar los registros de la tabla en cuestion.
     static drop(resource,llave){
         let data = {
             id: llave

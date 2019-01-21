@@ -110,21 +110,6 @@ let textoBehavior = (file) => {
     }); 
 };
 
-let jsBehavior = (file) => {
-    var js = new Js(file);
-    js.loadFileContent().then(()=>{
-        defaultBehavior(js);
-
-        let saveBtn = document.createElement("button");
-        aveBtn.innerHTML = "Guardar en la DBMM";
-        saveBtn.onclick = () => { js.save(); };
-
-        
-        dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).prepend(texto.DOMElement);
-        dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).append(saveBtn);
-    });
-};
-
 dropArea.subscribe("image", imageBehavior);
 dropArea.subscribe("audio", audioBehavior);
 dropArea.subscribe("video", videoBehavior);

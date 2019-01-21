@@ -60,12 +60,16 @@ class Imagen extends MultimediaElement{
             g: {},
             b: {}
         };
+        // Recorrer los pixeles para separar el RGB de cada pixel
         for (let i = 0; i < d.length; i+=4) {
             histogram.r[d[i]] = !(d[i] in histogram.r) ? 1 : histogram.r[d[i]] + 1;//R
             histogram.g[d[i+1]] = !(d[i+1] in histogram.g) ? 1 : histogram.g[d[i+1]] + 1;//G
             histogram.b[d[i+2]] = !(d[i+2] in histogram.b) ? 1 : histogram.b[d[i+2]] + 1;//B
         }
         this.histogram = histogram;
+        JSON.stringify(histogram);
+        super.save(histograma);
+        
     }
 
     drawHistogram(selector){
@@ -133,6 +137,7 @@ class Imagen extends MultimediaElement{
         };
         console.log(this.histogram);
         console.log(datasets);
+        //instancia del diagrama
         new Chart(ctx, {
             type: 'bar',
             data: {
