@@ -22,20 +22,20 @@ body{
 }
 
 #dropArea, #selectArea{
-    width: 100%;
-    height: 100%;
-    max-height: 100%;
+    width: 75%;
+    height: 75%;
+    max-height: 75%;
     background: white;
     box-shadow: 15px 25px 25px rgba(0,0,0,0.28);
-    padding: 15px;
-    border-radius: 15px;
+    padding: 3%;
+    border-radius: 3%;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-content: flex-start;
     transition: all 0.6s ease;
     overflow-y: scroll;
-    margin-right: 15px;
+    margin: 15px;
 }
 #selectArea .centeredTitle{
     display: block;
@@ -79,9 +79,13 @@ body{
 }
 
 #dropArea .file .info button{
-    padding: 4px 8px;
-    margin-right: 5px;
+    padding: 2%;
+    margin: 2%;
     background: linear-gradient(135deg, #ff7c01, #ffff00);
+    border: 0px;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
 }
 
 #dropArea .file .info img{
@@ -97,10 +101,13 @@ body{
     width: 100%;
     font-size: 75%;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-top: 5%;
+    margin-bottom: 5%;
     background: linear-gradient(135deg, #ff7c01, #ffff00);
     justify-content: center;
     align-items: center;
+    border-radius: 15px;
+    border: 0px;
 }
 
 #dropArea .file .info video, #dropArea .file .info iframe{
