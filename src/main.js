@@ -12,15 +12,17 @@ function defaultBehavior(el){
 
     fileCounter++;
     da.innerHTML +=`
-    <div class="file" id="file${fileCounter}">
-        <span class="name">${el.file.name}</span>
-        <div class="info">
-            <div>
-                <span class="type">${el.type}</span> 
-                <span class="size">${el.sizeToMB()}MB</span>
+    <pre><code class="plaintext">
+        <div class="file" id="file${fileCounter}">
+            <span class="name">${el.file.name}</span>
+            <div class="info">
+                <div>
+                    <span class="type">${el.type}</span> 
+                    <span class="size">${el.sizeToMB()}MB</span>
+                </div>
             </div>
         </div>
-    </div>
+    </code></pre>
     `;
 }
 
@@ -137,22 +139,54 @@ function select(whatSay) {
         case "text":
             Texto.select();
             break;
-        case "imgDel":
-            Imagen.delete();
-            break;
-        case "audDel":
-            Sonido.delete();
-            break;
-        case "vidDel":
-            Vid.delete();
-            break;
-        case "pdfDel":
-            Pdf.delete();
-            break;
-        case "txtDel":
-            Texto.delete();
-            break;
     }
+}
+/*Cambio del select para hacer más general las funciones*/
+function deleteEl(whatSay){
+    switch (whatSay) {
+        case "imagen":
+            Imagen.delete();
+            alert("Correctamente borrado");
+            break;
+        case "audio":
+            Sonido.delete();
+            alert("Correctamente borrado");
+            break;
+        case "video":
+            Vid.delete();
+            alert("Correctamente borrado");
+            break;
+        case "pdf":
+            Pdf.delete();
+            alert("Correctamente borrado");
+            break;
+        case "text":
+            Texto.delete();
+            alert("Correctamente borrado");
+            break;
+        }
+        /*switch (whatSay) {
+        case "imagen":
+        Imagen.delete();
+        alert("Correctamente borrado");
+        break;
+        case "audio":
+            Sonido.delete();
+            alert("Correctamente borrado");
+            break;
+        case "video":
+            Vid.delete();
+            alert("Correctamente borrado");
+            break;
+        case "pdf":
+            Pdf.delete();
+            alert("Correctamente borrado");
+            break;
+        case "text":
+            Texto.delete();
+            alert("Correctamente borrado");
+            break;
+        }*/
 }
 
 

@@ -137,26 +137,8 @@ class MultimediaElement{
             }
         });
     }
-
+    /*Se hicieron cambios para mostrar los elementos de las tablas de forma general óptima*/
     static select(resource,tag,elId,id=null){
-        var tagname;
-
-        if(resource == "Imagen.php"){
-            tagname = "imgDel";
-        }
-        if(resource == "Audio.php"){
-            tagname = "audDel";
-        }
-        if(resource == "Video.php"){
-            tagname = "vidDel";
-        }
-        if(resource == "Pdf.php"){
-            tagname = "pdfDel";
-        }
-        if(resource == "Texto.php"){
-            tagname = "txtDel";
-        }
-
         var options = { 
             method: 'POST',
             mode: 'cors',
@@ -171,32 +153,31 @@ class MultimediaElement{
             data.append("id",id);
             options.body = data;
         }
-
         let url = `${URLServidor}${resource}?exec=select`;
         fetch(url,options)
         .then(function(response) {
             return response.json();
         })
-        
         .then(function(json) {
             //pinta los resultados de la consulta
             json.forEach(el => {
                 if(document.querySelector(`#selectArea #${elId}${el.id}`) == null){
                     document.querySelector("#selectArea").innerHTML +=`
-                        <div class="file" id="${elId}${el.id}">
-                            <span class="name">${el.name}</span> 
+                    <div class="file" id="${elId}${el.id}">
+                    <span class="name">${el.name}</span>
                             <div class="info">
                                 <div>
                                     <span class="type">${el.type}</span> 
                                     <span class="size">${el.size}MB</span>
-                                    <button onclick="select('${tagname}')">Borrar</button>
+                                    <button onclick="deleteEl('${elId}')">Borrar</button>
                                 </div>
                             </div>
                         </div>
-                    `; 
+                    `;
                     tag.src = el.file;
                     document.querySelector(`#selectArea #${elId}${el.id} .info`).prepend(tag);
                     document.querySelector("#selectArea").classList.add("multimedia");
+                    //highlightAuto();
                 }
             });
         });
@@ -227,13 +208,14 @@ class MultimediaElement{
             return response.json();
         })
         .then(function(json) {
+            //Ponemos un try and catch para frenar el foreach al llegar a un id
             try{
             json.forEach(el => {
                     document.querySelector("#selectArea").innerHTML += `
                     <div class="file" id="">                   
                         <button hidden="true" type="button" onclick=(${MultimediaElement.drop(resource, el.id)})>Eliminar el objeto en la Base de datos</button>
                     </div> `;
-                    if(el.id!=null){ throw BreakException} 
+                    if(el.id!=null){ throw BreakException } 
             });
             }catch(e){
                 if (e!==BreakException) throw e;

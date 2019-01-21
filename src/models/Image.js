@@ -54,6 +54,14 @@ class Imagen extends MultimediaElement{
     }
 
     getHistogram(){
+
+        let avgr=0;
+        let avgg=0;
+        let avgb=0;
+        let avgR=0;
+        let avgG=0;
+        let avgB=0;
+
         let d = this.pixels.data;
         let histogram = {
             r: {},
@@ -63,10 +71,21 @@ class Imagen extends MultimediaElement{
         // Recorrer los pixeles para separar el RGB de cada pixel
         for (let i = 0; i < d.length; i+=4) {
             histogram.r[d[i]] = !(d[i] in histogram.r) ? 1 : histogram.r[d[i]] + 1;//R
+            avgr += histogram.r[i];
             histogram.g[d[i+1]] = !(d[i+1] in histogram.g) ? 1 : histogram.g[d[i+1]] + 1;//G
+            avgg += histogram.g[i];
             histogram.b[d[i+2]] = !(d[i+2] in histogram.b) ? 1 : histogram.b[d[i+2]] + 1;//B
+            avgb += histogram.b[i];
         }
         this.histogram = histogram;
+
+        console.log(avgr);
+        console.log(avgg);
+        console.log(avgb);
+
+        avgR = avgr/histogram.r.length;
+        avgG = avgg/histogram.g.length;
+        avgB = avgb/histogram.b.length;        
     }
 
     drawHistogram(selector){
@@ -84,7 +103,7 @@ class Imagen extends MultimediaElement{
         darkness.onclick = () => {
             ha.style.width = ctx.style.width = darkness.style.width = "0%";
             ha.style.height = ctx.style.height = darkness.style.height = "0%";
-            //ha.innerHTML = ""; //este era el error
+            //ha.innerHTML = ""; //este era el error para mostrar varias veces el mismo histograma
             let canvas = document.createElement("canvas");
             canvas.id = "histrogram";
             ha.append(canvas);
@@ -132,9 +151,10 @@ class Imagen extends MultimediaElement{
             datasets[1]["data"][i] = !(i in this.histogram.g) ? 0 : this.histogram.g[i];//G
             datasets[2]["data"][i] = !(i in this.histogram.b) ? 0 : this.histogram.b[i];//B
         };
+        /*
         console.log(this.histogram);
         console.log(datasets);
-        /*var histogramUp = JSON.stringify(this.histogram);
+        var histogramUp = JSON.stringify(this.histogram);
         console.log(histogramUp);*/
         //instancia del diagrama
         new Chart(ctx, {

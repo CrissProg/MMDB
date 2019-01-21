@@ -15,12 +15,11 @@
     <script src="src/models/Pdf.js"></script>
     <script src="src/models/Texto.js"></script>
     <script src="./node_modules/chart.js/dist/Chart.js"></script>
-    
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
-    <link rel="stylesheet" href="/path/to/styles/default.css">
-    <script src="/path/to/highlight.pack.js"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    cargar highlights -->
+    <!--cargar highlights--> 
     
 </head>
 <body>
@@ -39,12 +38,46 @@
                     <button onclick="select('text')">Mostrar Scripts y texto de la DB</button> 
             </div>
         </div>
+        
         <div id="LaOscuridad">
                 <div id="histogramArea">
                     <canvas id="histogram"></canvas>
                 </div>
         </div>
     </div>
+    <!--<pre>
+        <code class="javascript">
+            let a = 2;
+            var b = 4;
+
+            function sumar(a,b){
+                return a+b;
+            }
+
+            switch (whatSay) {
+                case "imagen":
+                Imagen.delete();
+                alert("Correctamente borrado");
+                break;
+                case "audio":
+                    Sonido.delete();
+                    alert("Correctamente borrado");
+                    break;
+                case "video":
+                    Vid.delete();
+                    alert("Correctamente borrado");
+                    break;
+                case "pdf":
+                    Pdf.delete();
+                    alert("Correctamente borrado");
+                    break;
+                case "text":
+                    Texto.delete();
+                    alert("Correctamente borrado");
+                    break;
+                }
+        </code>
+    </pre>-->
     <script src="src/main.js"></script>
 </body>
 </html>
