@@ -134,8 +134,8 @@ class Imagen extends MultimediaElement{
         };
         console.log(this.histogram);
         console.log(datasets);
-        var histogramUp = JSON.stringify(this.histogram);
-        console.log(histogramUp);
+        /*var histogramUp = JSON.stringify(this.histogram);
+        console.log(histogramUp);*/
         //instancia del diagrama
         new Chart(ctx, {
             type: 'bar',
@@ -165,6 +165,7 @@ class Imagen extends MultimediaElement{
      */
     save(){
         super.save("Imagen.php");
+        //this.histogram.save("Imagen.php");
     }
 
     static select(){
