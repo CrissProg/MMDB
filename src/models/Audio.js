@@ -14,4 +14,9 @@ class Sonido extends MultimediaElement{
         tag.controls = true;
         super.select("Audio.php",tag,"audio");
     }
+
+    static delete(){
+        var tag = document.createElement("audio");
+        super.delete("Audio.php",tag,"audio");
+    }
 }

@@ -21,5 +21,10 @@ class Pdf extends MultimediaElement{
         let tag = document.createElement("iframe");
         super.select("Pdf.php",tag,"pdf");
     }
+
+    static delete(){
+        var tag = document.createElement("iframe");
+        super.delete("Pdf.php",tag,"pdf");
+    }
     
 }

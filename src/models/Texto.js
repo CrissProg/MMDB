@@ -21,5 +21,10 @@ class Texto extends MultimediaElement{
         let tag = document.createElement("iframe");
         super.select("Texto.php",tag,"text");
     }
+
+    static delete(){
+        var tag = document.createElement("iframe");
+        super.delete("Texto.php",tag,"text");
+    }
     
 }

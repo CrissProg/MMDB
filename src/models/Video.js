@@ -14,4 +14,9 @@ class Vid extends MultimediaElement{
         tag.controls = true;
         super.select("Video.php",tag,"video");
     }
+
+    static delete(){
+        var tag = document.createElement("video");
+        super.delete("Video.php",tag,"video");
+    }
 }

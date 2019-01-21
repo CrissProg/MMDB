@@ -13,7 +13,7 @@ function defaultBehavior(el){
     fileCounter++;
     da.innerHTML +=`
     <div class="file" id="file${fileCounter}">
-        <span class="name">${el.file.name}</span> 
+        <span class="name">${el.file.name}</span>
         <div class="info">
             <div>
                 <span class="type">${el.type}</span> 
@@ -37,9 +37,20 @@ let imageBehavior = (file) => {
         histogramBtn.innerHTML = "Ver histograma";
         histogramBtn.onclick = () => { img.drawHistogram("#histogram"); };
 
+        /**
+         *      Creamos un boton para comparar el histograma con los histogramas de la BD
+         *  
+         */
+        
+        let compHisBtn = document.createElement("button");
+        compHisBtn.innerHTML = "Comparar Histograma con BD";
+        //compHisBtn.onclick = () => {img.compHistogram("")};
+        
         dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).prepend(img.DOMElement);
         dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).append(saveBtn);
-        dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).append(histogramBtn);    });
+        dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).append(histogramBtn);    
+        dropArea.DOMElement.querySelector(`#file${fileCounter} .info`).append(compHisBtn);  // boton para comphist
+        });
 };
 
 let audioBehavior = (file) => {
@@ -123,8 +134,9 @@ dropArea.subscribe("text", textoBehavior);
 /**
     SELECT AREA
 */
-function select(sayWhat) {
-    switch (sayWhat) {
+
+function select(whatSay) {
+    switch (whatSay) {
         case "img":
             Imagen.select();
             break;
@@ -139,6 +151,21 @@ function select(sayWhat) {
             break;
         case "text":
             Texto.select();
+            break;
+        case "imgDel":
+            Imagen.delete();
+            break;
+        case "audDel":
+            Sonido.delete();
+            break;
+        case "vidDel":
+            Vid.delete();
+            break;
+        case "pdfDel":
+            Pdf.delete();
+            break;
+        case "txtDel":
+            Texto.delete();
             break;
     }
 }

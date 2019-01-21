@@ -71,25 +71,31 @@ class Imagen extends MultimediaElement{
     drawHistogram(selector){
         let ha = document.querySelector("#histogramArea");
         let ctx = document.querySelector(selector);
-        console.log("asdasd");
         console.log(ctx);
         
-        ha.style.width = ctx.style.width = "55vw";
-        ha.style.height = ctx.style.height = "50vh";
+        ha.style.width = ctx.style.width = "55%";
+        ha.style.height = ctx.style.height = "50%";
 
         let darkness = document.querySelector("#LaOscuridad");
-        darkness.style.width = "100vw";
-        darkness.style.height = "100vh";
+        darkness.style.width = "100%";
+        darkness.style.height = "100%";
 
         darkness.onclick = () => {
-            ha.style.width = ctx.style.width = darkness.style.width = "0vw";
-            ha.style.height = ctx.style.height = darkness.style.height = "0vh";
-            ha.innerHTML = "";
+            ha.style.width = ctx.style.width = darkness.style.width = "0%";
+            ha.style.height = ctx.style.height = darkness.style.height = "0%";
+            //ha.innerHTML = ""; //este era el error
             let canvas = document.createElement("canvas");
             canvas.id = "histrogram";
             ha.append(canvas);
         }
 
+        /**
+         *          Creamos funcion para comparar el histograma con la BD   
+         */
+
+    /*compHistogram(){
+
+    }*/
         /**
          * PLOT TWIST / Suprise MF
          */
@@ -160,5 +166,10 @@ class Imagen extends MultimediaElement{
     static select(){
         var tag = document.createElement("img");
         super.select("Imagen.php",tag,"imagen");
+    }
+
+    static delete(){
+        var tag = document.createElement("img");
+        super.delete("Imagen.php",tag,"imagen");
     }
 }
